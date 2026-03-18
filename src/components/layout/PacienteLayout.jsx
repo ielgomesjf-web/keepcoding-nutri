@@ -22,7 +22,7 @@ export default function PacienteLayout() {
   return (
     <div className="flex flex-col h-screen bg-gray-50">
       <header className="h-14 bg-white border-b border-border flex items-center justify-between px-4 shrink-0">
-        <span className="text-primary font-heading font-bold">KeepCoding Nutri</span>
+        <span className="text-primary font-heading font-bold">Keep Nutri</span>
         <button onClick={handleLogout} className="flex items-center gap-1.5 text-sm text-text-muted hover:text-danger transition-colors p-2 rounded-lg cursor-pointer">
           <LogOut size={18} />
           <span className="hidden sm:inline">Sair</span>

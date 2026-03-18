@@ -44,7 +44,7 @@ export default function RelatoriosPage() {
   function exportPDF() {
     const doc = new jsPDF();
     doc.setFontSize(18);
-    doc.text('Relatorio - KeepCoding Nutri', 14, 22);
+    doc.text('Relatorio - Keep Nutri', 14, 22);
     doc.setFontSize(11);
     doc.text(`Periodo: ${period}`, 14, 32);
     doc.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')}`, 14, 39);
@@ -62,7 +62,7 @@ export default function RelatoriosPage() {
       theme: 'striped',
       headStyles: { fillColor: [249, 115, 22] },
     });
-    doc.save('relatorio-keepcoding-nutri.pdf');
+    doc.save('relatorio-keep-nutri.pdf');
     showToast('PDF exportado com sucesso!', 'success');
   }
 

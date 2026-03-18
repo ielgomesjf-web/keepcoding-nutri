@@ -36,7 +36,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-bg-dark text-white">
       {/* Nav */}
       <nav className="flex items-center justify-between px-6 py-4 max-w-6xl mx-auto">
-        <span className="font-heading text-xl font-bold text-primary">KeepCoding Nutri</span>
+        <span className="font-heading text-xl font-bold text-primary">Keep Nutri</span>
         <div className="flex items-center gap-4">
           <Link to="/login" className="text-sm text-gray-300 hover:text-white transition-colors">Entrar</Link>
           <Link to="/register" className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors">Comecar</Link>
@@ -135,7 +135,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-gray-800 mt-10">
         <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-500 text-sm">2025 KeepCoding Nutri. Todos os direitos reservados.</p>
+          <p className="text-gray-500 text-sm">2025 Keep Nutri. Todos os direitos reservados.</p>
           <div className="flex gap-6 text-sm text-gray-500">
             <a href="#" className="hover:text-gray-300">Termos</a>
             <a href="#" className="hover:text-gray-300">Privacidade</a>

@@ -17,8 +17,7 @@ export default function Sidebar({ open, onClose }) {
     <div className="w-64 h-full bg-sidebar flex flex-col">
       <div className="p-6 flex items-center justify-between">
         <div>
-          <h1 className="text-primary text-xl font-bold font-heading">KeepCoding</h1>
-          <p className="text-gray-400 text-sm">Nutri</p>
+          <h1 className="text-primary text-xl font-bold font-heading">Keep Nutri</h1>
         </div>
         <button onClick={onClose} className="lg:hidden text-gray-400 hover:text-white cursor-pointer">
           <X size={20} />

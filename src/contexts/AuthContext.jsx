@@ -10,8 +10,8 @@ import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 
 const AuthContext = createContext(null);
 
-const DEMO_USER = { uid: 'demo', email: 'demo@keepcoding.com' };
-const DEMO_DATA = { id: 'demo', nome: 'Dr. Carlos Silva', email: 'demo@keepcoding.com', tipo: 'nutricionista', crn: 'CRN-3 12345' };
+const DEMO_USER = { uid: 'demo', email: 'demo@keepnutri.com' };
+const DEMO_DATA = { id: 'demo', nome: 'Dr. Carlos Silva', email: 'demo@keepnutri.com', tipo: 'nutricionista', crn: 'CRN-3 12345' };
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);

@@ -50,7 +50,7 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-bg-dark flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl p-8 w-full max-w-md animate-fade-in">
         <div className="text-center mb-8">
-          <h1 className="font-heading text-2xl font-bold text-text-primary">KeepCoding Nutri</h1>
+          <h1 className="font-heading text-2xl font-bold text-text-primary">Keep Nutri</h1>
           <p className="text-text-secondary text-sm mt-2">Criar sua conta</p>
         </div>
 
