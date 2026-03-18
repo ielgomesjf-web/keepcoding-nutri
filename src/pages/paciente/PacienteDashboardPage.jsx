@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Card from '../../components/ui/Card';
-import { Droplets, Calendar, Check } from 'lucide-react';
+import { Droplets, Calendar, Check, Plus, Minus } from 'lucide-react';
 
 const meals = [
   { name: 'Cafe da Manha', foods: 'Pao integral + Ovo + Suco', cal: 350, done: true },
@@ -36,22 +36,90 @@ export default function PacienteDashboardPage() {
       </div>
 
       {/* Water */}
-      <Card className="mb-4">
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <Droplets size={18} className="text-info" />
-            <h3 className="font-semibold text-text-primary text-sm">Agua</h3>
+      <Card className="mb-4" padding="none">
+        <div className="relative overflow-hidden rounded-xl">
+          {/* Background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-cyan-50 to-blue-50" />
+
+          {/* Wave decoration */}
+          <div className="absolute bottom-0 left-0 right-0 opacity-20" style={{ height: `${Math.max((water / waterGlasses) * 60, 8)}%`, transition: 'height 0.6s ease' }}>
+            <svg viewBox="0 0 400 40" preserveAspectRatio="none" className="absolute top-0 w-full h-5" style={{ transform: 'translateY(-90%)' }}>
+              <path d="M0,20 C50,5 100,35 150,20 C200,5 250,35 300,20 C350,5 400,35 400,20 L400,40 L0,40 Z" fill="#0ea5e9" opacity="0.5" />
+              <path d="M0,25 C60,10 120,35 180,22 C240,9 300,35 360,22 C380,16 400,28 400,25 L400,40 L0,40 Z" fill="#0ea5e9" opacity="0.3" />
+            </svg>
+            <div className="w-full h-full bg-gradient-to-t from-sky-400/40 to-sky-300/20" />
           </div>
-          <span className="text-xs text-text-muted">{waterMl}ml de {waterGlasses * 250}ml</span>
-        </div>
-        <div className="flex gap-2 mb-3">
-          {Array.from({ length: waterGlasses }).map((_, i) => (
-            <button key={i} onClick={() => setWater(i + 1)}
-              className={`flex-1 h-8 rounded-lg transition-colors cursor-pointer ${i < water ? 'bg-info' : 'bg-gray-100'}`} />
-          ))}
-        </div>
-        <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-          <div className="h-full bg-info rounded-full transition-all" style={{ width: `${(water / waterGlasses) * 100}%` }} />
+
+          <div className="relative p-4 sm:p-5">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-full bg-sky-100 flex items-center justify-center">
+                  <Droplets size={18} className="text-sky-500" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-text-primary text-sm">Hidratacao</h3>
+                  <p className="text-xs text-text-muted">Meta diaria: {waterGlasses} copos</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-lg font-bold text-sky-600">{waterMl}ml</p>
+                <p className="text-[11px] text-text-muted">de {waterGlasses * 250}ml</p>
+              </div>
+            </div>
+
+            {/* Drops grid */}
+            <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4">
+              {Array.from({ length: waterGlasses }).map((_, i) => (
+                <button key={i} onClick={() => setWater(i < water ? i : i + 1)}
+                  className="group cursor-pointer flex flex-col items-center gap-1"
+                >
+                  <div className={`relative transition-all duration-300 ${i < water ? 'scale-100' : 'scale-90 opacity-40'}`}>
+                    <svg width="32" height="38" viewBox="0 0 32 38" className={`drop-shadow-sm transition-all duration-300 ${i < water ? '' : 'grayscale'}`}>
+                      <path d="M16 2 C16 2 4 16 4 24 C4 30.6 9.4 36 16 36 C22.6 36 28 30.6 28 24 C28 16 16 2 16 2Z"
+                        fill={i < water ? 'url(#dropGrad)' : '#e5e7eb'}
+                        stroke={i < water ? '#0ea5e9' : '#d1d5db'}
+                        strokeWidth="1.5"
+                      />
+                      <defs>
+                        <linearGradient id="dropGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#7dd3fc" />
+                          <stop offset="100%" stopColor="#0284c7" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    {i < water && (
+                      <span className="absolute inset-0 flex items-center justify-center text-white text-[10px] font-bold pt-2">
+                        {i + 1}
+                      </span>
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {/* Progress bar + controls */}
+            <div className="flex items-center gap-3">
+              <button onClick={() => setWater(w => Math.max(0, w - 1))}
+                className="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center text-text-muted hover:text-sky-500 hover:border-sky-300 transition-colors cursor-pointer shadow-sm shrink-0">
+                <Minus size={16} />
+              </button>
+              <div className="flex-1">
+                <div className="h-3 bg-white/80 rounded-full overflow-hidden shadow-inner border border-gray-100">
+                  <div className="h-full rounded-full transition-all duration-500 ease-out bg-gradient-to-r from-sky-300 via-sky-400 to-cyan-500"
+                    style={{ width: `${(water / waterGlasses) * 100}%` }}
+                  />
+                </div>
+                <p className="text-center text-xs text-text-muted mt-1.5">
+                  {water >= waterGlasses ? '🎉 Meta atingida!' : `${waterGlasses - water} copos restantes`}
+                </p>
+              </div>
+              <button onClick={() => setWater(w => Math.min(waterGlasses, w + 1))}
+                className="w-9 h-9 rounded-full bg-sky-500 flex items-center justify-center text-white hover:bg-sky-600 transition-colors cursor-pointer shadow-sm shrink-0">
+                <Plus size={16} />
+              </button>
+            </div>
+          </div>
         </div>
       </Card>
 
