@@ -21,7 +21,7 @@ const objectives = [
 ];
 
 const recentPatients = [
-  { name: 'Maria Silva', objetivo: 'Emagrecimento', data: '15/03/2025' },
+  { name: 'Francine Silva', objetivo: 'Emagrecimento', data: '15/03/2025' },
   { name: 'Joao Santos', objetivo: 'Ganho Massa', data: '14/03/2025' },
   { name: 'Ana Oliveira', objetivo: 'Manutencao', data: '13/03/2025' },
   { name: 'Pedro Costa', objetivo: 'Saude', data: '12/03/2025' },
@@ -29,7 +29,7 @@ const recentPatients = [
 ];
 
 const appointments = [
-  { time: '09:00', patient: 'Maria Silva', type: 'Retorno' },
+  { time: '09:00', patient: 'Francine Silva', type: 'Retorno' },
   { time: '10:30', patient: 'Carlos Souza', type: 'Primeira Consulta' },
   { time: '14:00', patient: 'Ana Oliveira', type: 'Retorno' },
 ];

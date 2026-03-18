@@ -9,7 +9,7 @@ import { useToast } from '../../components/shared/Toast';
 import { calcIMC, classificarIMC } from '../../utils/calculos';
 
 const mockPatients = [
-  { id: '1', nome: 'Maria Silva', email: 'maria@email.com', objetivo: 'Emagrecimento', status: 'Ativo', peso: 72, altura: 165, ultimaConsulta: '15/03/2025' },
+  { id: '1', nome: 'Francine Silva', email: 'francine@email.com', objetivo: 'Emagrecimento', status: 'Ativo', peso: 72, altura: 165, ultimaConsulta: '15/03/2025' },
   { id: '2', nome: 'Joao Santos', email: 'joao@email.com', objetivo: 'Ganho Massa', status: 'Ativo', peso: 68, altura: 178, ultimaConsulta: '14/03/2025' },
   { id: '3', nome: 'Ana Oliveira', email: 'ana@email.com', objetivo: 'Manutencao', status: 'Ativo', peso: 58, altura: 160, ultimaConsulta: '13/03/2025' },
   { id: '4', nome: 'Pedro Costa', email: 'pedro@email.com', objetivo: 'Saude', status: 'Ativo', peso: 90, altura: 175, ultimaConsulta: '12/03/2025' },

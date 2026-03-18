@@ -7,7 +7,7 @@ import { calcIMC, classificarIMC } from '../../utils/calculos';
 import { AreaChart, Area, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const patient = {
-  id: '1', nome: 'Maria Silva', email: 'maria@email.com', telefone: '(11) 99999-1234',
+  id: '1', nome: 'Francine Silva', email: 'francine@email.com', telefone: '(11) 99999-1234',
   nascimento: '15/05/1990', sexo: 'F', peso: 72, altura: 165, objetivo: 'Emagrecimento',
   restricoes: 'Intolerancia a lactose', status: 'Ativo',
   metaCalorias: 1800, metaProteinas: 90, metaCarbs: 220, metaGorduras: 60,
@@ -49,7 +49,7 @@ export default function PacienteDetailPage() {
 
       <Card className="mb-6">
         <div className="flex flex-col sm:flex-row items-start gap-4">
-          <div className="w-16 h-16 rounded-full bg-primary/15 text-primary flex items-center justify-center text-xl font-bold shrink-0">MS</div>
+          <div className="w-16 h-16 rounded-full bg-primary/15 text-primary flex items-center justify-center text-xl font-bold shrink-0">FS</div>
           <div className="flex-1">
             <div className="flex items-center gap-3 flex-wrap">
               <h1 className="font-heading text-xl font-bold text-text-primary">{patient.nome}</h1>

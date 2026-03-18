@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
     const demo = params.get('demo');
     if (demo) {
       setUser(DEMO_USER);
-      setUserData({ ...DEMO_DATA, tipo: demo === 'paciente' ? 'paciente' : 'nutricionista', nome: demo === 'paciente' ? 'Maria Silva' : 'Dr. Carlos Silva' });
+      setUserData({ ...DEMO_DATA, tipo: demo === 'paciente' ? 'paciente' : 'nutricionista', nome: demo === 'paciente' ? 'Francine Silva' : 'Dr. Carlos Silva' });
       setLoading(false);
       return;
     }

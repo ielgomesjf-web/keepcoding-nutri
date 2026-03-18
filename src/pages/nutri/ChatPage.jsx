@@ -3,7 +3,7 @@ import Card from '../../components/ui/Card';
 import { Search, Send, Paperclip, ArrowLeft } from 'lucide-react';
 
 const conversations = [
-  { id: '1', name: 'Maria Silva', lastMsg: 'Obrigada doutor!', time: '14:30', unread: 2, online: true },
+  { id: '1', name: 'Francine Silva', lastMsg: 'Obrigada doutor!', time: '14:30', unread: 2, online: true },
   { id: '2', name: 'Joao Santos', lastMsg: 'Posso trocar o jantar?', time: '12:15', unread: 1, online: false },
   { id: '3', name: 'Ana Oliveira', lastMsg: 'Entendido, vou seguir', time: '09:45', unread: 0, online: true },
   { id: '4', name: 'Pedro Costa', lastMsg: 'Foto do prato enviada', time: 'Ontem', unread: 0, online: false },
@@ -12,7 +12,7 @@ const conversations = [
 
 const messagesByConv = {
   '1': [
-    { id: 1, from: 'nutri', text: 'Ola Maria! Como esta se sentindo com o novo plano?', time: '14:00' },
+    { id: 1, from: 'nutri', text: 'Ola Francine! Como esta se sentindo com o novo plano?', time: '14:00' },
     { id: 2, from: 'patient', text: 'Oi doutor! Estou gostando bastante, me sinto mais disposta', time: '14:10' },
     { id: 3, from: 'nutri', text: 'Que otimo! Lembre de manter a hidratacao e registrar as refeicoes no app', time: '14:15' },
     { id: 4, from: 'patient', text: 'Sim, estou registrando tudo! So tive dificuldade no fim de semana', time: '14:20' },

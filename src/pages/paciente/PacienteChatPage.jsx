@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Send, Paperclip } from 'lucide-react';
 
 const mockMessages = [
-  { id: 1, from: 'nutri', text: 'Ola Maria! Como esta se sentindo com o novo plano?', time: '09:00', date: 'Ontem' },
+  { id: 1, from: 'nutri', text: 'Ola Francine! Como esta se sentindo com o novo plano?', time: '09:00', date: 'Ontem' },
   { id: 2, from: 'patient', text: 'Oi doutor! Estou gostando, mas sinto muita fome no lanche da tarde', time: '09:15', date: 'Ontem' },
   { id: 3, from: 'nutri', text: 'Podemos aumentar a porcao do lanche. Tente adicionar mais uma fruta ou um punhado de castanhas', time: '09:20', date: 'Ontem' },
   { id: 4, from: 'patient', text: 'Ok, vou tentar! Posso substituir o iogurte por queijo cottage?', time: '09:25', date: 'Ontem' },

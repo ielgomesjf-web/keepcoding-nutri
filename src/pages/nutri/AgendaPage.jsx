@@ -10,7 +10,7 @@ const days = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
 const hours = Array.from({ length: 13 }, (_, i) => `${String(i + 8).padStart(2, '0')}:00`);
 
 const mockAppointments = [
-  { id: 1, day: 0, hour: '09:00', patient: 'Maria Silva', type: 'Retorno', duration: 30 },
+  { id: 1, day: 0, hour: '09:00', patient: 'Francine Silva', type: 'Retorno', duration: 30 },
   { id: 2, day: 0, hour: '10:30', patient: 'Carlos Souza', type: 'Primeira Consulta', duration: 60 },
   { id: 3, day: 1, hour: '14:00', patient: 'Ana Oliveira', type: 'Retorno', duration: 30 },
   { id: 4, day: 2, hour: '09:00', patient: 'Pedro Costa', type: 'Avaliacao', duration: 45 },
@@ -18,7 +18,7 @@ const mockAppointments = [
 ];
 
 const todaySchedule = [
-  { time: '09:00', patient: 'Maria Silva', type: 'Retorno', status: 'Confirmada' },
+  { time: '09:00', patient: 'Francine Silva', type: 'Retorno', status: 'Confirmada' },
   { time: '10:30', patient: 'Carlos Souza', type: 'Primeira Consulta', status: 'Agendada' },
   { time: '14:00', patient: 'Joao Santos', type: 'Retorno', status: 'Agendada' },
   { time: '16:00', patient: 'Fernanda Lima', type: 'Avaliacao', status: 'Confirmada' },

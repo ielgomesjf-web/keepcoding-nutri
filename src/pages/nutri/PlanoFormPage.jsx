@@ -88,7 +88,7 @@ export default function PlanoFormPage() {
 
   async function handleAI() {
     setAiLoading(true);
-    const result = await generateMealSuggestion({ nome: 'Maria', peso: 72, altura: 165, objetivo: 'Emagrecimento', restricoes: 'Intolerancia a lactose' });
+    const result = await generateMealSuggestion({ nome: 'Francine', peso: 72, altura: 165, objetivo: 'Emagrecimento', restricoes: 'Intolerancia a lactose' });
     setAiResult(result);
     setShowAi(true);
     setAiLoading(false);

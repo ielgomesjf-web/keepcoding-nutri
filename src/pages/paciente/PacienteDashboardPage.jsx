@@ -31,7 +31,7 @@ export default function PacienteDashboardPage() {
   return (
     <div className="px-4 py-6 pb-4 animate-fade-in">
       <div className="mb-6">
-        <h1 className="font-heading text-2xl font-bold text-text-primary">Ola, Maria!</h1>
+        <h1 className="font-heading text-2xl font-bold text-text-primary">Ola, Francine!</h1>
         <p className="text-sm text-text-secondary mt-1">Voce esta no caminho certo!</p>
       </div>
 
