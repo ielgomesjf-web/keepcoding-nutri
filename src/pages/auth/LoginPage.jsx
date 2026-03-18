@@ -18,8 +18,7 @@ export default function LoginPage() {
     setError('');
     setLoading(true);
     try {
-      const cred = await login(email, password);
-      const snap = cred;
+      await login(email, password);
       navigate('/nutri');
     } catch (err) {
       const msgs = {
