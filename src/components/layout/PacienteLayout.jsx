@@ -1,5 +1,6 @@
-import { NavLink, Outlet } from 'react-router-dom';
-import { Home, UtensilsCrossed, BookOpen, TrendingUp, MessageSquare } from 'lucide-react';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { Home, UtensilsCrossed, BookOpen, TrendingUp, MessageSquare, LogOut } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
 
 const navItems = [
   { icon: Home, label: 'Inicio', path: '/paciente' },
@@ -10,10 +11,22 @@ const navItems = [
 ];
 
 export default function PacienteLayout() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    await logout();
+    navigate('/login');
+  }
+
   return (
     <div className="flex flex-col h-screen bg-gray-50">
-      <header className="h-14 bg-white border-b border-border flex items-center justify-center shrink-0">
+      <header className="h-14 bg-white border-b border-border flex items-center justify-between px-4 shrink-0">
         <span className="text-primary font-heading font-bold">KeepCoding Nutri</span>
+        <button onClick={handleLogout} className="flex items-center gap-1.5 text-sm text-text-muted hover:text-danger transition-colors p-2 rounded-lg cursor-pointer">
+          <LogOut size={18} />
+          <span className="hidden sm:inline">Sair</span>
+        </button>
       </header>
 
       <main className="flex-1 overflow-y-auto">

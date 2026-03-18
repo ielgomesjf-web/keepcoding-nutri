@@ -1,8 +1,15 @@
-import { Menu, Bell } from 'lucide-react';
+import { Menu, Bell, LogOut } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function Header({ onMenuClick }) {
-  const { userData } = useAuth();
+  const { userData, logout } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    await logout();
+    navigate('/login');
+  }
 
   return (
     <header className="h-16 bg-bg-panel border-b border-border px-6 flex items-center justify-between shrink-0">
@@ -18,6 +25,9 @@ export default function Header({ onMenuClick }) {
         <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm font-bold">
           {(userData?.nome || 'N')[0]}
         </div>
+        <button onClick={handleLogout} className="p-3 rounded-lg hover:bg-gray-100 text-text-muted hover:text-danger transition-colors cursor-pointer" title="Sair">
+          <LogOut size={18} />
+        </button>
       </div>
     </header>
   );
