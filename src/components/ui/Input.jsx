@@ -4,7 +4,7 @@ export default function Input({ label, error, icon: Icon, type = 'text', classNa
       <div className={className}>
         {label && <label className="block text-sm font-medium text-text-secondary mb-1.5">{label}</label>}
         <textarea
-          className={`w-full px-4 py-2.5 rounded-lg border ${error ? 'border-danger' : 'border-border'} focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none text-text-primary`}
+          className={`w-full px-4 py-3 rounded-lg border ${error ? 'border-danger' : 'border-border'} focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none text-text-primary`}
           rows={4}
           {...rest}
         />
@@ -24,7 +24,7 @@ export default function Input({ label, error, icon: Icon, type = 'text', classNa
         )}
         <input
           type={type}
-          className={`w-full ${Icon ? 'pl-10' : 'px-4'} py-2.5 rounded-lg border ${error ? 'border-danger' : 'border-border'} focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-text-primary`}
+          className={`w-full ${Icon ? 'pl-10' : 'px-4'} py-3 rounded-lg border ${error ? 'border-danger' : 'border-border'} focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-text-primary`}
           {...rest}
         />
       </div>

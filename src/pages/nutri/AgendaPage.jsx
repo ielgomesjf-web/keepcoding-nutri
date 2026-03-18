@@ -26,6 +26,7 @@ const todaySchedule = [
 
 export default function AgendaPage() {
   const [showModal, setShowModal] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(0);
   const [newAppt, setNewAppt] = useState({ patient: '', date: '', time: '', duration: '30', type: 'Retorno', notes: '' });
   const { showToast } = useToast();
 
@@ -49,14 +50,49 @@ export default function AgendaPage() {
 
   return (
     <div className="animate-fade-in">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="font-heading text-2xl font-bold text-text-primary">Agenda</h1>
+      <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <h1 className="font-heading text-xl sm:text-2xl font-bold text-text-primary">Agenda</h1>
         <Button icon={Plus} onClick={() => setShowModal(true)}>Nova Consulta</Button>
       </div>
 
-      <div className="grid lg:grid-cols-[1fr_300px] gap-6">
-        {/* Week View */}
-        <Card padding="none" className="overflow-x-auto">
+      <div className="flex flex-col lg:grid lg:grid-cols-[1fr_300px] gap-4 sm:gap-6">
+        {/* Mobile: Day View */}
+        <Card padding="none" className="md:hidden">
+          <div className="flex overflow-x-auto border-b border-border">
+            {days.map((d, i) => (
+              <button
+                key={d}
+                onClick={() => setSelectedDay(i)}
+                className={`flex-1 min-w-[3rem] py-3 text-sm font-medium text-center shrink-0 cursor-pointer transition-colors ${
+                  selectedDay === i ? 'text-primary border-b-2 border-primary bg-primary/5' : 'text-text-muted'
+                }`}
+              >
+                {d}
+              </button>
+            ))}
+          </div>
+          <div className="divide-y divide-border-light">
+            {hours.map(h => {
+              const appts = mockAppointments.filter(a => a.day === selectedDay && a.hour === h);
+              return (
+                <div key={h} className="flex items-start gap-3 px-3 py-2.5 min-h-[44px]">
+                  <span className="text-xs text-text-muted w-12 shrink-0 pt-0.5">{h}</span>
+                  <div className="flex-1">
+                    {appts.map(a => (
+                      <div key={a.id} className={`rounded-lg px-3 py-2 mb-1 text-white text-sm ${typeColors[a.type] || 'bg-primary'}`}>
+                        <p className="font-medium">{a.patient}</p>
+                        <p className="text-xs opacity-80">{a.type} - {a.duration}min</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </Card>
+
+        {/* Desktop: Week Grid */}
+        <Card padding="none" className="hidden md:block overflow-x-auto">
           <div className="min-w-[600px]">
             <div className="grid grid-cols-[60px_repeat(7,1fr)] border-b border-border">
               <div className="p-2" />
@@ -71,7 +107,7 @@ export default function AgendaPage() {
                   {days.map((_, di) => (
                     <div key={di} className="border-l border-border-light h-10 relative">
                       {mockAppointments.filter(a => a.day === di && a.hour === h).map(a => (
-                        <div key={a.id} className={`absolute inset-x-0.5 top-0.5 rounded px-1.5 py-0.5 text-white text-[10px] leading-tight ${typeColors[a.type] || 'bg-primary'}`}>
+                        <div key={a.id} className={`absolute inset-x-0.5 top-0.5 rounded px-1.5 py-0.5 text-white text-xs leading-tight ${typeColors[a.type] || 'bg-primary'}`}>
                           <p className="font-medium truncate">{a.patient}</p>
                           <p className="opacity-80">{a.type}</p>
                         </div>
@@ -96,8 +132,8 @@ export default function AgendaPage() {
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-text-primary truncate">{a.patient}</p>
                   <div className="flex gap-2 mt-1">
-                    <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-gray-100 text-text-muted">{a.type}</span>
-                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${statusColors[a.status]}`}>{a.status}</span>
+                    <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 text-text-muted">{a.type}</span>
+                    <span className={`text-xs px-1.5 py-0.5 rounded-full ${statusColors[a.status]}`}>{a.status}</span>
                   </div>
                 </div>
               </div>
@@ -116,7 +152,7 @@ export default function AgendaPage() {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-text-secondary mb-1.5">Duracao</label>
-              <select value={newAppt.duration} onChange={e => setNewAppt(p => ({ ...p, duration: e.target.value }))} className="w-full px-4 py-2.5 rounded-lg border border-border text-text-primary">
+              <select value={newAppt.duration} onChange={e => setNewAppt(p => ({ ...p, duration: e.target.value }))} className="w-full px-4 py-3 rounded-lg border border-border text-text-primary">
                 <option value="30">30 min</option>
                 <option value="45">45 min</option>
                 <option value="60">60 min</option>
@@ -124,7 +160,7 @@ export default function AgendaPage() {
             </div>
             <div>
               <label className="block text-sm font-medium text-text-secondary mb-1.5">Tipo</label>
-              <select value={newAppt.type} onChange={e => setNewAppt(p => ({ ...p, type: e.target.value }))} className="w-full px-4 py-2.5 rounded-lg border border-border text-text-primary">
+              <select value={newAppt.type} onChange={e => setNewAppt(p => ({ ...p, type: e.target.value }))} className="w-full px-4 py-3 rounded-lg border border-border text-text-primary">
                 <option>Primeira Consulta</option>
                 <option>Retorno</option>
                 <option>Avaliacao</option>

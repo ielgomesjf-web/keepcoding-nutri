@@ -118,7 +118,7 @@ export default function PlanoFormPage() {
                 <div key={k} className="flex-1">
                   <label className="text-xs text-text-muted">{l}</label>
                   <input type="number" value={macros[k]} onChange={e => setMacros(p => ({ ...p, [k]: Number(e.target.value) }))}
-                    className="w-full px-2 py-1.5 rounded border border-border text-sm text-center" />
+                    className="w-full px-2 py-2.5 rounded-lg border border-border text-sm text-center min-h-[44px]" />
                 </div>
               ))}
             </div>
@@ -159,14 +159,18 @@ export default function PlanoFormPage() {
                   {mealFoods.length > 0 && (
                     <div className="mt-3 flex flex-col gap-2">
                       {mealFoods.map((f, i) => (
-                        <div key={i} className="flex items-center gap-3 text-sm py-1.5 border-b border-border-light last:border-0">
-                          <span className="flex-1 text-text-primary">{f.nome}</span>
-                          <span className="text-text-muted">{f.grams}g</span>
-                          <span className="text-primary font-medium w-16 text-right">{f.calorias}kcal</span>
-                          <span className="text-info w-10 text-right">{f.proteinas}P</span>
-                          <span className="text-warning w-10 text-right">{f.carboidratos}C</span>
-                          <span className="text-danger w-10 text-right">{f.gorduras}G</span>
-                          <button onClick={() => removeFood(slot.key, i)} className="text-text-muted hover:text-danger cursor-pointer"><X size={14} /></button>
+                        <div key={i} className="py-2 border-b border-border-light last:border-0">
+                          <div className="flex items-center gap-2 text-sm">
+                            <span className="flex-1 text-text-primary truncate">{f.nome}</span>
+                            <span className="text-text-muted text-xs">{f.grams}g</span>
+                            <button onClick={() => removeFood(slot.key, i)} className="p-1.5 text-text-muted hover:text-danger cursor-pointer"><X size={16} /></button>
+                          </div>
+                          <div className="flex gap-3 mt-1 text-xs">
+                            <span className="text-primary font-medium">{f.calorias}kcal</span>
+                            <span className="text-info">{f.proteinas}P</span>
+                            <span className="text-warning">{f.carboidratos}C</span>
+                            <span className="text-danger">{f.gorduras}G</span>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -233,7 +237,7 @@ export default function PlanoFormPage() {
               <p className="text-xs text-text-muted mb-3">por 100g: {selectedFood.calorias}kcal | P:{selectedFood.proteinas}g | C:{selectedFood.carboidratos}g | G:{selectedFood.gorduras}g</p>
               <Input label="Quantidade (g)" type="number" value={grams} onChange={e => setGrams(e.target.value)} />
               {grams && (
-                <div className="mt-3 grid grid-cols-4 gap-2 text-center text-sm">
+                <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-sm">
                   {Object.entries(calculateNutrients(selectedFood, Number(grams) || 0)).slice(0, 4).map(([k, v]) => (
                     <div key={k} className="bg-white rounded p-2">
                       <p className="font-bold text-text-primary">{v}</p>

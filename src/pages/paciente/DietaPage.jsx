@@ -109,10 +109,10 @@ export default function DietaPage() {
                         <p className="text-xs text-text-muted">{f.qtd}</p>
                       </div>
                       <div className="flex gap-1.5">
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-primary/10 text-primary">{f.cal}cal</span>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-info/10 text-info">{f.p}P</span>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-warning/10 text-warning">{f.c}C</span>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-danger/10 text-danger">{f.g}G</span>
+                        <span className="text-[11px] px-1.5 py-0.5 rounded bg-primary/10 text-primary">{f.cal}cal</span>
+                        <span className="text-[11px] px-1.5 py-0.5 rounded bg-info/10 text-info">{f.p}P</span>
+                        <span className="text-[11px] px-1.5 py-0.5 rounded bg-warning/10 text-warning">{f.c}C</span>
+                        <span className="text-[11px] px-1.5 py-0.5 rounded bg-danger/10 text-danger">{f.g}G</span>
                       </div>
                     </div>
                   ))}
@@ -147,7 +147,7 @@ export default function DietaPage() {
           ].map(t => (
             <div key={t.label}>
               <p className={`text-lg font-bold ${t.color}`}>{t.value}</p>
-              <p className="text-[10px] text-text-muted">{t.label}</p>
+              <p className="text-[11px] text-text-muted">{t.label}</p>
             </div>
           ))}
         </div>

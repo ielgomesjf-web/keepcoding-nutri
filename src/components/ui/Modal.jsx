@@ -28,8 +28,8 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md' })
       >
         <div className="flex items-center justify-between p-5 border-b border-border">
           <h3 className="font-heading text-lg font-semibold text-text-primary">{title}</h3>
-          <button onClick={onClose} className="p-1 rounded-lg hover:bg-gray-100 text-text-muted transition-colors cursor-pointer">
-            <X size={20} />
+          <button onClick={onClose} className="p-2.5 rounded-lg hover:bg-gray-100 text-text-muted transition-colors cursor-pointer">
+            <X size={22} />
           </button>
         </div>
         <div className="p-5">{children}</div>

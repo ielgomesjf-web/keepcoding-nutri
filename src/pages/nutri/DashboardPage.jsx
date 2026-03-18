@@ -54,7 +54,8 @@ export default function DashboardPage() {
       <div className="grid lg:grid-cols-2 gap-6 mb-6">
         <Card>
           <h3 className="font-heading font-semibold text-text-primary mb-4">Consultas da Semana</h3>
-          <ResponsiveContainer width="100%" height={200}>
+          <div className="h-[160px] sm:h-[200px]">
+          <ResponsiveContainer width="100%" height="100%">
             <BarChart data={weeklyData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" vertical={false} />
               <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 12 }} />
@@ -62,11 +63,13 @@ export default function DashboardPage() {
               <Bar dataKey="value" fill="#f97316" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
+          </div>
         </Card>
 
         <Card>
           <h3 className="font-heading font-semibold text-text-primary mb-4">Distribuicao de Objetivos</h3>
-          <ResponsiveContainer width="100%" height={200}>
+          <div className="h-[160px] sm:h-[200px]">
+          <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie data={objectives} cx="50%" cy="50%" innerRadius={50} outerRadius={80} dataKey="value" label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
                 {objectives.map(o => <Cell key={o.name} fill={o.color} />)}
@@ -74,6 +77,7 @@ export default function DashboardPage() {
               <Tooltip />
             </PieChart>
           </ResponsiveContainer>
+          </div>
         </Card>
       </div>
 

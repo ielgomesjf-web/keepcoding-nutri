@@ -33,7 +33,7 @@ export default function PacienteLayout() {
                 }`
               }
             >
-              <item.icon size={20} />
+              <item.icon size={22} />
               {item.label}
             </NavLink>
           ))}

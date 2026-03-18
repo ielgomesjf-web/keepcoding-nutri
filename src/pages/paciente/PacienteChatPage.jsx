@@ -77,7 +77,7 @@ export default function PacienteChatPage() {
 
       {/* Input */}
       <div className="px-4 py-3 bg-white border-t border-border flex items-end gap-2 shrink-0">
-        <button className="p-2 text-text-muted hover:text-text-secondary cursor-pointer">
+        <button className="p-3 text-text-muted hover:text-text-secondary cursor-pointer">
           <Paperclip size={18} />
         </button>
         <textarea
@@ -91,7 +91,7 @@ export default function PacienteChatPage() {
         <button
           onClick={handleSend}
           disabled={!newMsg.trim()}
-          className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center disabled:opacity-40 cursor-pointer shrink-0"
+          className="w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center disabled:opacity-40 cursor-pointer shrink-0"
         >
           <Send size={16} />
         </button>

@@ -68,7 +68,7 @@ export default function PacienteDetailPage() {
       <div className="flex gap-1 mb-6 bg-gray-100 rounded-lg p-1">
         {tabs.map(t => (
           <button key={t} onClick={() => setTab(t)}
-            className={`flex-1 py-2 text-sm font-medium rounded-md transition-colors capitalize cursor-pointer ${tab === t ? 'bg-white text-text-primary shadow-sm' : 'text-text-muted hover:text-text-secondary'}`}>
+            className={`flex-1 py-2.5 text-sm font-medium rounded-md transition-colors capitalize cursor-pointer min-h-[44px] ${tab === t ? 'bg-white text-text-primary shadow-sm' : 'text-text-muted hover:text-text-secondary'}`}>
             {t === 'geral' ? 'Visao Geral' : t.charAt(0).toUpperCase() + t.slice(1)}
           </button>
         ))}
@@ -123,7 +123,8 @@ export default function PacienteDetailPage() {
         <div className="flex flex-col gap-6">
           <Card>
             <h3 className="font-semibold text-text-primary mb-4">Evolucao de Peso</h3>
-            <ResponsiveContainer width="100%" height={220}>
+            <div className="h-[160px] sm:h-[220px]">
+            <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={weightHistory}>
                 <defs><linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#10b981" stopOpacity={0.3} /><stop offset="100%" stopColor="#10b981" stopOpacity={0} /></linearGradient></defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" vertical={false} />
@@ -132,10 +133,27 @@ export default function PacienteDetailPage() {
                 <Area type="monotone" dataKey="peso" stroke="#10b981" strokeWidth={2} fill="url(#greenGrad)" />
               </AreaChart>
             </ResponsiveContainer>
+            </div>
           </Card>
           <Card>
             <h3 className="font-semibold text-text-primary mb-4">Medidas</h3>
-            <div className="overflow-x-auto">
+            {/* Mobile: stacked cards */}
+            <div className="flex flex-col gap-3 md:hidden">
+              {measurements.map(m => (
+                <div key={m.data} className="bg-gray-50 rounded-lg p-3">
+                  <p className="text-sm font-medium text-primary mb-2">{m.data}</p>
+                  <div className="grid grid-cols-3 gap-2 text-sm">
+                    <div><p className="text-xs text-text-muted">Peso</p><p className="font-medium">{m.peso}kg</p></div>
+                    <div><p className="text-xs text-text-muted">IMC</p><p className="font-medium">{m.imc}</p></div>
+                    <div><p className="text-xs text-text-muted">Cintura</p><p className="font-medium">{m.cintura}cm</p></div>
+                    <div><p className="text-xs text-text-muted">Quadril</p><p className="font-medium">{m.quadril}cm</p></div>
+                    <div><p className="text-xs text-text-muted">Braco</p><p className="font-medium">{m.braco}cm</p></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Desktop: table */}
+            <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-sm">
                 <thead><tr className="border-b border-border">
                   {['Data', 'Peso', 'IMC', 'Cintura', 'Quadril', 'Braco'].map(h => (

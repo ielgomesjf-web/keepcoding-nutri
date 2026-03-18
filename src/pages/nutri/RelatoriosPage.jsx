@@ -70,7 +70,7 @@ export default function RelatoriosPage() {
     <div className="animate-fade-in">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
         <h1 className="font-heading text-2xl font-bold text-text-primary">Relatorios</h1>
-        <select value={period} onChange={e => setPeriod(e.target.value)} className="px-4 py-2 rounded-lg border border-border text-sm text-text-primary">
+        <select value={period} onChange={e => setPeriod(e.target.value)} className="px-4 py-3 rounded-lg border border-border text-sm text-text-primary">
           <option>Ultima Semana</option>
           <option>Ultimo Mes</option>
           <option>Ultimos 3 Meses</option>
@@ -90,7 +90,8 @@ export default function RelatoriosPage() {
       <div className="grid lg:grid-cols-2 gap-6 mb-6">
         <Card>
           <h3 className="font-semibold text-text-primary mb-4">Consultas por Mes</h3>
-          <ResponsiveContainer width="100%" height={220}>
+          <div className="h-[160px] sm:h-[220px]">
+          <ResponsiveContainer width="100%" height="100%">
             <BarChart data={consultasMes}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" vertical={false} />
               <XAxis dataKey="mes" axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 12 }} />
@@ -98,11 +99,13 @@ export default function RelatoriosPage() {
               <Bar dataKey="value" fill="#f97316" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
+          </div>
         </Card>
 
         <Card>
           <h3 className="font-semibold text-text-primary mb-4">Evolucao de Pacientes</h3>
-          <ResponsiveContainer width="100%" height={220}>
+          <div className="h-[160px] sm:h-[220px]">
+          <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={novosPacientes}>
               <defs><linearGradient id="gGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#10b981" stopOpacity={0.3} /><stop offset="100%" stopColor="#10b981" stopOpacity={0} /></linearGradient></defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" vertical={false} />
@@ -111,11 +114,13 @@ export default function RelatoriosPage() {
               <Area type="monotone" dataKey="value" stroke="#10b981" strokeWidth={2} fill="url(#gGrad)" />
             </AreaChart>
           </ResponsiveContainer>
+          </div>
         </Card>
 
         <Card>
           <h3 className="font-semibold text-text-primary mb-4">Distribuicao por Objetivo</h3>
-          <ResponsiveContainer width="100%" height={220}>
+          <div className="h-[160px] sm:h-[220px]">
+          <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie data={objetivos} cx="50%" cy="50%" innerRadius={50} outerRadius={85} dataKey="value"
                 label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
@@ -124,11 +129,13 @@ export default function RelatoriosPage() {
               <Tooltip />
             </PieChart>
           </ResponsiveContainer>
+          </div>
         </Card>
 
         <Card>
           <h3 className="font-semibold text-text-primary mb-4">Horarios Mais Populares</h3>
-          <ResponsiveContainer width="100%" height={220}>
+          <div className="h-[160px] sm:h-[220px]">
+          <ResponsiveContainer width="100%" height="100%">
             <BarChart data={horarios}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" vertical={false} />
               <XAxis dataKey="hora" axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 12 }} />
@@ -136,6 +143,7 @@ export default function RelatoriosPage() {
               <Bar dataKey="value" fill="#3b82f6" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
+          </div>
         </Card>
       </div>
 
@@ -145,7 +153,7 @@ export default function RelatoriosPage() {
             <h3 className="font-semibold text-text-primary">Exportar Relatorio</h3>
             <p className="text-sm text-text-secondary mt-1">Gere um relatorio em PDF ou CSV</p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
             <Button variant="outline" icon={FileText} onClick={exportPDF}>Exportar PDF</Button>
             <Button variant="ghost" icon={Download} onClick={() => showToast('CSV exportado!', 'success')}>Exportar CSV</Button>
           </div>

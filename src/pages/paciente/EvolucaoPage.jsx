@@ -49,7 +49,7 @@ export default function EvolucaoPage() {
           <Card key={s.label} padding="sm">
             <p className={`text-xl font-bold ${s.color}`}>{s.value}</p>
             <p className="text-xs text-text-muted">{s.label}</p>
-            {s.sub && <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-gray-100 text-text-muted">{s.sub}</span>}
+            {s.sub && <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 text-text-muted">{s.sub}</span>}
           </Card>
         ))}
       </div>
@@ -57,7 +57,8 @@ export default function EvolucaoPage() {
       {/* Weight Chart */}
       <Card className="mb-5">
         <h3 className="font-semibold text-sm text-text-primary mb-3">Evolucao de Peso</h3>
-        <ResponsiveContainer width="100%" height={200}>
+        <div className="h-[160px] sm:h-[200px]">
+        <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={weightData}>
             <defs>
               <linearGradient id="wGrad" x1="0" y1="0" x2="0" y2="1">
@@ -72,6 +73,7 @@ export default function EvolucaoPage() {
             <Area type="monotone" dataKey="peso" stroke="#10b981" strokeWidth={2} fill="url(#wGrad)" />
           </AreaChart>
         </ResponsiveContainer>
+        </div>
       </Card>
 
       {/* Measurements */}
@@ -80,7 +82,23 @@ export default function EvolucaoPage() {
           <h3 className="font-semibold text-sm text-text-primary">Medidas</h3>
           <Button variant="ghost" size="sm" icon={Plus} onClick={() => setShowModal(true)}>Adicionar</Button>
         </div>
-        <div className="overflow-x-auto">
+        {/* Mobile: stacked cards */}
+        <div className="flex flex-col gap-3 sm:hidden">
+          {measurements.map((m, i) => (
+            <div key={i} className="bg-gray-50 rounded-lg p-3">
+              <p className="text-sm font-medium text-primary mb-2">{m.data}</p>
+              <div className="grid grid-cols-3 gap-2 text-sm">
+                <div><p className="text-xs text-text-muted">Peso</p><p className="font-medium">{m.peso}kg</p></div>
+                <div><p className="text-xs text-text-muted">IMC</p><p className="font-medium">{m.imc}</p></div>
+                <div><p className="text-xs text-text-muted">Cintura</p><p className="font-medium">{m.cintura}cm</p></div>
+                <div><p className="text-xs text-text-muted">Quadril</p><p className="font-medium">{m.quadril}cm</p></div>
+                <div><p className="text-xs text-text-muted">Braco</p><p className="font-medium">{m.braco}cm</p></div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* Desktop: table */}
+        <div className="hidden sm:block overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border">
@@ -114,7 +132,7 @@ export default function EvolucaoPage() {
               <div className={`w-12 h-12 rounded-full flex items-center justify-center ${b.earned ? 'bg-primary/10 text-primary' : 'bg-gray-100 text-text-muted'}`}>
                 <b.icon size={22} />
               </div>
-              <span className="text-[10px] text-text-muted leading-tight">{b.label}</span>
+              <span className="text-xs text-text-muted leading-tight">{b.label}</span>
             </div>
           ))}
         </div>
