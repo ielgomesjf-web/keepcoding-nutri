@@ -29,6 +29,18 @@ export function AuthProvider({ children }) {
       return;
     }
 
+    // Check for saved local session
+    const saved = localStorage.getItem('kc_session');
+    if (saved) {
+      try {
+        const { user: savedUser, userData: savedData } = JSON.parse(saved);
+        setUser(savedUser);
+        setUserData(savedData);
+        setLoading(false);
+        return;
+      } catch {}
+    }
+
     let unsub = () => {};
     const timeout = setTimeout(() => setLoading(false), 3000);
     try {
@@ -56,11 +68,13 @@ export function AuthProvider({ children }) {
     return () => { unsub(); clearTimeout(timeout); };
   }, []);
 
-  async function login(email, password) {
+  async function login(email, password, tipo = 'nutricionista') {
     if (password === '123456') {
       const fakeUser = { uid: 'local-' + email.replace(/[^a-z0-9]/gi, ''), email };
+      const fakeData = { id: fakeUser.uid, nome: email.split('@')[0], email, tipo, crn: '' };
       setUser(fakeUser);
-      setUserData({ id: fakeUser.uid, nome: email.split('@')[0], email, tipo: 'nutricionista', crn: '' });
+      setUserData(fakeData);
+      localStorage.setItem('kc_session', JSON.stringify({ user: fakeUser, userData: fakeData }));
       return { user: fakeUser };
     }
     const cred = await signInWithEmailAndPassword(auth, email, password);
@@ -81,6 +95,7 @@ export function AuthProvider({ children }) {
       };
       setUser(fakeUser);
       setUserData(fakeData);
+      localStorage.setItem('kc_session', JSON.stringify({ user: fakeUser, userData: fakeData }));
       return { user: fakeUser };
     }
     const cred = await createUserWithEmailAndPassword(auth, email, password);
@@ -101,6 +116,7 @@ export function AuthProvider({ children }) {
 
   async function logout() {
     try { await signOut(auth); } catch {}
+    localStorage.removeItem('kc_session');
     setUser(null);
     setUserData(null);
   }

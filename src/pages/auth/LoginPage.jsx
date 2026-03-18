@@ -8,6 +8,7 @@ import { Mail, Lock } from 'lucide-react';
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [tipo, setTipo] = useState('nutricionista');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
@@ -18,8 +19,8 @@ export default function LoginPage() {
     setError('');
     setLoading(true);
     try {
-      await login(email, password);
-      navigate('/nutri');
+      await login(email, password, tipo);
+      navigate(tipo === 'nutricionista' ? '/nutri' : '/paciente');
     } catch (err) {
       const msgs = {
         'auth/user-not-found': 'Usuario nao encontrado.',
@@ -44,6 +45,26 @@ export default function LoginPage() {
           {error && (
             <div className="bg-danger/10 text-danger text-sm px-4 py-3 rounded-lg">{error}</div>
           )}
+
+          <div>
+            <label className="block text-sm font-medium text-text-secondary mb-1.5">Entrar como</label>
+            <div className="flex gap-3">
+              {['nutricionista', 'paciente'].map(t => (
+                <button
+                  key={t}
+                  type="button"
+                  onClick={() => setTipo(t)}
+                  className={`flex-1 py-2.5 rounded-lg text-sm font-medium border transition-all cursor-pointer ${
+                    tipo === t
+                      ? 'border-primary bg-primary/10 text-primary'
+                      : 'border-border text-text-secondary hover:border-gray-300'
+                  }`}
+                >
+                  {t === 'nutricionista' ? 'Nutricionista' : 'Paciente'}
+                </button>
+              ))}
+            </div>
+          </div>
 
           <Input label="Email" type="email" icon={Mail} placeholder="seu@email.com" value={email} onChange={e => setEmail(e.target.value)} required />
           <Input label="Senha" type="password" icon={Lock} placeholder="Sua senha" value={password} onChange={e => setPassword(e.target.value)} required />
